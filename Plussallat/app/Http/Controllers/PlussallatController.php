@@ -48,9 +48,12 @@ class PlussallatController extends Controller
      * @param  \App\Models\Plussallat  $plussallat
      * @return \Illuminate\Http\Response
      */
-    public function show(Plussallat $plussallat)
+    public function show(int $id)
     {
-        //
+        $plussallat = Plussallat::find($id);
+        if(is_null($plussallat))
+            return response()->json(["message" => "A megadott azonosítóval nem található plüssállat."]);
+        return response()->json($plussallat);
     }
 
     /**
